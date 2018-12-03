@@ -7,7 +7,33 @@ This guide documents some of the best practices for crafting code in the enterpr
 
 - A module's subfolders should be _typed folders_. This means folder names such as pipes, components, blocks, views, services, actions, stores, directives and etc.
 
-- Organize a modules subfolder contents using an **index.ts** file, a technique known as barrel to reduce long import names.
+- Organize a modules subfolder contents using an **index.ts** file, a technique known as **barrel** to reduce long import names. This is also implements the facade designed pattern hence some also calls it a **index.ts** a **facade file**.
+The benefit is that, it ensures that there is only one place where you import your constructs which is pretty tidy than the _scatta waka way_. This also means that were you to move files around, changing directories for certain constructs, the barrel file is the only one where updating the paths to these constructs is needed. However, angular natively provides a way to achieve barrelling on the module level using it **ngModule** _decorator_ through the exports and _declaration_ property;
+
+
+- Modules should be cohesive. That is to say they should be doing one and only thing.
+
+
+
+- Root Modules should not export anything.
+
+- export constructs can be done by adding the export keyword to each construct or using group export syntax. This will a matter of taste. For example `export {Cat, Dog}`
+
+
+- By the way dependency injection has a cost, so if a component has too many dependencies it is time to revise and see whether your component is really taking on a single responsiblity.
+
+- A word about providers. Both angular modules and components have access to a providers array through their decorators that we can add the `service` constructs. Since the arrival of Angular modules, the recommendation is not to use the providers array for components. The explanation is that specifiying it as a provider on module level easily descends to all components. However when a component instantiates a service the service instance will be only available to the child components and directives used in that component. That is limiting. But others may see it as a way of limiting the use of a particular service. Use my recommendation. After instantiating is done once, we don't want any deadlocks. If you can careful, then you may go the component level provisioning but for safety use Module level provisioning.
+So the rule of thumb here is if you want to expose a service to your application, then put it in the Angular module's `providers` array. If you want to limit access to the service, the place it into a components `providers` array. The you will ensure it can only be reached by that component and its view children.
+
+
+
+
+
+
+
+
+
+
 
 
 
