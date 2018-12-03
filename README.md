@@ -1,3 +1,18 @@
+# Enterprise Application Style Guide & Patterns
+This guide documents some of the best practices for crafting code in the enterprise setting to enhance code maintainability and ease of picking up lagacy codebase for new developers.
+
+## Angular Based Applications
+
+- Organize your applications in modules, primarily core modules, feature modules and shared modules for cross-cutting concern.s
+
+- A module's subfolders should be _typed folders_. This means folder names such as pipes, components, blocks, views, services, actions, stores, directives and etc.
+
+- Organize a modules subfolder contents using an **index.ts** file, a technique known as barrel to reduce long import names.
+
+
+
+
+
 **Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
 
 When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
